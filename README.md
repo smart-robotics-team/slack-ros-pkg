@@ -3,7 +3,24 @@ slack-ros-pkg
 
 General description
 ---------------------
-ROS packages to enable communication between ROS and Slack ( https://slack.com/ ).
+ROS packages to enable communication between ROS and [Slack](https://slack.com/).
+
+Installation
+---------------------
+First of all, you have to install [python_slackclient](https://github.com/slackhq/python-slackclient). 
+
+Then, install this package :
+
+    cd ~/catkin_ws/src
+    git clone https://github.com/smart-robotics-team/slack-ros-pkg.git
+    cd ~/catkin_ws
+    catkin_make --pkg slack_ros
+
+Usage
+---------------------
+Just run :
+
+    rosrun slack_ros slack_ros.py _token:="xoxp-123456789" _channel:="G123456789Q" _username:="ROSbot"
 
 Node: slack_ros.py (in package slack_ros)
 ---------------------
