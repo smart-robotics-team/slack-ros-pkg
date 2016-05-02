@@ -3,7 +3,7 @@ slack-ros-pkg
 
 General description
 ---------------------
-ROS packages to enable communication between ROS and [Slack](https://slack.com/).
+ROS packages to enable communication between [ROS](http://wiki.ros.org/) and [Slack](https://slack.com/).
 
 Installation
 ---------------------
@@ -21,9 +21,16 @@ Usage
 Just run :
 
     rosrun slack_ros slack_ros.py _token:="xoxp-123456789" _channel:="G123456789Q" _username:="ROSbot"
+    
+You can run in another terminal the test program :
+
+    rosrun slack_ros slack_test.py
 
 Node: slack_ros.py (in package slack_ros)
 ---------------------
+#### Description
+This node makes the communication between [ROS](http://wiki.ros.org/) and [Slack](https://slack.com/). You have to enter some parameters to make it works. It listen what you write in [Slack](https://slack.com/) and publish it on a topic. On the other hand, you can write in a topic to make your bot speak in [Slack](https://slack.com/).
+
 #### Parameters
 **token** *(string, default: xoxp-123456789)*
 
@@ -37,7 +44,7 @@ Enter the channel where you want to speak with your bot. For example, you can ty
 
 **username** *(string, default: ros-bot)*
 
-The name given to your bot in Slack.
+The name given to your bot in [Slack](https://slack.com/).
 
 
 #### Published Topics
@@ -48,4 +55,31 @@ This topic will show you what people say in the selected channel.
 #### Subscribed Topics
 **from_ros_to_slack** *(std_msgs::String)*   
 
-This topic is used to send something in the selected Slack channel.
+This topic is used to send something in the selected [Slack](https://slack.com/) channel.
+
+Node: slack_test.py (in package slack_ros)
+---------------------
+#### Description
+This node is used to test your communication between [ROS](http://wiki.ros.org/) and [Slack](https://slack.com/). The node wait that you write something on [Slack](https://slack.com/), on the correct channel. Then, the bot will answer you in [Slack](https://slack.com/) with : "You just say : XXXXXXX".
+
+#### Parameters
+
+#### Published Topics
+**from_ros_to_slack** *(std_msgs::String)*   
+
+This topic will send the answer of the bot in [Slack](https://slack.com/).
+
+#### Subscribed Topics
+**from_slack_to_ros** *(std_msgs::String)*   
+
+This topic subscribe what you say in [Slack](https://slack.com/).
+
+#### Example
+
+In this image, you can see the [Slack](https://slack.com/) channel with the bot speaking :
+
+<img src="./skackROS.png" />
+
+In this image, you can see in [ROS](http://wiki.ros.org/) what has been said in the [Slack](https://slack.com/) channel :
+
+<img src="./slackROStopic.png" />
