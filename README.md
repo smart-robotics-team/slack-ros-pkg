@@ -55,7 +55,12 @@ This topic will show you what people say in the selected channel.
 #### Subscribed Topics
 **from_ros_to_slack** *(std_msgs::String)*   
 
-This topic is used to send something in the selected [Slack](https://slack.com/) channel.
+This topic is used to send a MESSAGE in the selected [Slack](https://slack.com/) channel.
+
+**send_file_to_slack** *(std_msgs::String)*   
+
+This topic is used to send a FILE in the selected [Slack](https://slack.com/) channel.
+
 
 Node: slack_test.py (in package slack_ros)
 ---------------------
