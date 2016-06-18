@@ -22,6 +22,8 @@ import rospy
 from std_msgs.msg import String
 import sys
 
+import requests
+
 from slackclient import SlackClient
 
 # Node example class.
@@ -36,6 +38,7 @@ class SlackROS():
         # Create a publisher for our custom message.
         pub = rospy.Publisher('from_slack_to_ros', String, queue_size=10)
 	rospy.Subscriber("from_ros_to_slack", String, self.callback)
+	rospy.Subscriber("send_file_to_slack", String, self.filecallback)
 
 	# Create the slack client
 	self.sc = SlackClient(self.token)
@@ -59,6 +62,13 @@ class SlackROS():
     	    username=self.username, icon_emoji=':robot_face:'
 	)
         #rospy.loginfo(rospy.get_caller_id() + "I heard %s %s", data.data, self.channel)
+
+    def filecallback(self, data):
+        with open(data.data, 'rb') as file:
+                r = requests.post('https://slack.com/api/files.upload', files={'file': ['File '+data.data, file]}, params={
+                                        'token': self.token,
+                                        'channels': self.channel
+                })
 
 
 # Main function.
